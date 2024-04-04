@@ -87,7 +87,7 @@ export default function App() {
               </div>
             </form>
             <h2>Code Output</h2>
-            <textarea name="" id="" rows="11" defaultValue={markup}></textarea>
+            <textarea name="" id="" rows="12" defaultValue={markup}></textarea>
           </div>
         </div>
 
