@@ -87,13 +87,13 @@ export default function App() {
               </div>
             </form>
             <h2>Code Output</h2>
-            <textarea name="" id="" rows="11" value={markup}></textarea>
+            <textarea name="" id="" rows="11" defaultValue={markup}></textarea>
           </div>
         </div>
 
         <div className="col-9">
           <div className="col-lg-12">
-            <h2>Media Archive</h2>
+            <h2>Media Archive:</h2>
             <MediaMentionExample
               source={mediaSource}
               title={mediaTitle}
@@ -103,7 +103,7 @@ export default function App() {
             <br />
           </div>
           <div className="col-lg-12">
-            <h2>Recent Media</h2>
+            <h2>Recent Media:</h2>
             <RecentMediaExample
               source={mediaSource}
               title={mediaTitle}
