@@ -9,11 +9,12 @@ export default function App() {
     "How the Crisis at Boeing Could Make Your Next Vacation More Expensive"
   );
   const [mediaSource, setMediaSource] = useState("CNN");
-  const [mediaDate, setMediaDate] = useState("Mar 21, 2024");
+  const [mediaMonth, setMediaMonth] = useState("Apr");
+  const [mediaDay, setMediaDay] = useState("5");
+  const [mediaYear, setMediaYear] = useState("2024");
   const [mediaUrl, setMediaUrl] = useState(
     "https://edition.cnn.com/2024/03/21/business/boeing-crisis-vacation-ticket-prices/index.html"
   );
-  const { register, getValues } = useForm();
 
   useEffect(() => {
     setMarkup(
@@ -24,7 +25,11 @@ export default function App() {
         '<strong><br /><span class="source-name">' +
         mediaSource +
         '</span><br /></strong></a><span class="media-date">' +
-        mediaDate +
+        mediaMonth +
+        " " +
+        mediaDay +
+        ", " +
+        mediaYear +
         "</span></p>"
     );
   });
@@ -45,8 +50,8 @@ export default function App() {
               <input
                 className="media-input"
                 required
-                {...register("title", { required: true })}
-                placeholder="Media Title"
+                placeHolder={mediaTitle}
+                onChange={(e) => setMediaTitle(e.target.value)}
               />
               <br />
               <label className="form-label">Media Mention Source</label>
@@ -54,19 +59,21 @@ export default function App() {
               <input
                 className="media-input"
                 required
-                {...register("source", { required: true })}
-                placeholder="Source Name"
+                placeHolder={mediaSource}
+                onChange={(e) => setMediaSource(e.target.value)}
               />
               <br />
               <label className="form-label">Media Mention Date</label>
               <br />
-              <select required {...register("month", { required: true })}>
+              <select
+                required
+                onChange={(e) => setMediaMonth(e.target.value)}
+                defaultValue={mediaMonth}
+              >
                 <option value="Jan">Jan</option>
                 <option value="Feb">Feb</option>
                 <option value="Mar">Mar</option>
-                <option selected value="Apr">
-                  Apr
-                </option>
+                <option value="Apr">Apr</option>
                 <option value="May">May</option>
                 <option value="Jun">Jun</option>
                 <option value="Jul">Jul</option>
@@ -76,12 +83,14 @@ export default function App() {
                 <option value="Nov">Nov</option>
                 <option value="Dec">Dec</option>
               </select>
-              <select required {...register("day", { required: true })}>
+              <select required onChange={(e) => setMediaDay(e.target.value)} defaultValue="5">
                 <option value="1">1</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
                 <option value="4">4</option>
-                <option value="5">5</option>
+                <option  value="5">
+                  5
+                </option>
                 <option value="6">6</option>
                 <option value="7">7</option>
                 <option value="8">8</option>
@@ -109,7 +118,7 @@ export default function App() {
                 <option value="30">30</option>
                 <option value="31">31</option>
               </select>
-              <select required {...register("year", { required: true })}>
+              <select required onChange={(e) => setMediaYear(e.target.value)}>
                 <option value="2024">2024</option>
                 <option value="2025">2025</option>
                 <option value="2026">2026</option>
@@ -120,32 +129,13 @@ export default function App() {
               <input
                 className="media-input"
                 required
-                {...register("url")}
-                placeholder="https://"
+                placeholder={mediaUrl}
+                onChange={(e) => setMediaUrl(e.target.value)}
               />
               <br />
-
-              <input
-                className="ctaBtn"
-                type="submit"
-                onClick={() => {
-                  setMediaTitle(getValues("title"));
-                  setMediaSource(getValues("source"));
-                  setMediaDate(
-                    getValues("month") +
-                      " " +
-                      getValues("day") +
-                      ", " +
-                      getValues("year")
-                  );
-                  setMediaUrl(getValues("url"));
-                }}
-              >
-                Set Media Mention
-              </input>
             </form>
             <h2>Code Output</h2>
-            <textarea name="" id="" rows="12" defaultValue={markup}></textarea>
+            <textarea name="" id="" rows="12" value={markup}></textarea>
           </div>
         </div>
 
@@ -155,7 +145,7 @@ export default function App() {
             <MediaMentionExample
               source={mediaSource}
               title={mediaTitle}
-              date={mediaDate}
+              date={mediaMonth + " " + mediaDay + ", " + mediaYear}
               url={mediaUrl}
             />
             <br />
