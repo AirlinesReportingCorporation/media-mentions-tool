@@ -30,7 +30,7 @@ export default function App() {
   });
 
   return (
-    <div className="container">
+    <div className="container" style={{ maxWidth: "1250px" }}>
       <div className="row">
         <div className="col-lg-12">
           <h1>Media Mention Tool</h1>
@@ -44,7 +44,8 @@ export default function App() {
               <br />
               <input
                 className="media-input"
-                {...register("title", { onChange: (e) => console.log(e) })}
+                required
+                {...register("title", { required: true })}
                 placeholder="Media Title"
               />
               <br />
@@ -52,39 +53,96 @@ export default function App() {
               <br />
               <input
                 className="media-input"
-                {...register("source", { onChange: (e) => console.log(e) })}
+                required
+                {...register("source", { required: true })}
                 placeholder="Source Name"
               />
               <br />
               <label className="form-label">Media Mention Date</label>
               <br />
-              <input
-                className="media-input"
-                {...register("date", { onChange: (e) => console.log(e) })}
-                placeholder="Apr 04, 2024"
-              />
+              <select required {...register("month", { required: true })}>
+                <option value="Jan">Jan</option>
+                <option value="Feb">Feb</option>
+                <option value="Mar">Mar</option>
+                <option selected value="Apr">
+                  Apr
+                </option>
+                <option value="May">May</option>
+                <option value="Jun">Jun</option>
+                <option value="Jul">Jul</option>
+                <option value="Aug">Aug</option>
+                <option value="Sep">Sep</option>
+                <option value="Oct">Oct</option>
+                <option value="Nov">Nov</option>
+                <option value="Dec">Dec</option>
+              </select>
+              <select required {...register("day", { required: true })}>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+                <option value="13">13</option>
+                <option value="14">14</option>
+                <option value="15">15</option>
+                <option value="16">16</option>
+                <option value="17">17</option>
+                <option value="18">18</option>
+                <option value="19">19</option>
+                <option value="20">20</option>
+                <option value="21">21</option>
+                <option value="22">22</option>
+                <option value="23">23</option>
+                <option value="24">24</option>
+                <option value="25">25</option>
+                <option value="26">26</option>
+                <option value="27">27</option>
+                <option value="28">28</option>
+                <option value="29">29</option>
+                <option value="30">30</option>
+                <option value="31">31</option>
+              </select>
+              <select required {...register("year", { required: true })}>
+                <option value="2024">2024</option>
+                <option value="2025">2025</option>
+                <option value="2026">2026</option>
+              </select>
               <br />
               <label className="form-label">Media Mention URL</label>
               <br />
               <input
                 className="media-input"
-                {...register("url", { onChange: (e) => console.log(e) })}
+                required
+                {...register("url")}
                 placeholder="https://"
               />
               <br />
 
-              <div
+              <input
                 className="ctaBtn"
-                type="button"
+                type="submit"
                 onClick={() => {
                   setMediaTitle(getValues("title"));
                   setMediaSource(getValues("source"));
-                  setMediaDate(getValues("date"));
+                  setMediaDate(
+                    getValues("month") +
+                      " " +
+                      getValues("day") +
+                      ", " +
+                      getValues("year")
+                  );
                   setMediaUrl(getValues("url"));
                 }}
               >
                 Set Media Mention
-              </div>
+              </input>
             </form>
             <h2>Code Output</h2>
             <textarea name="" id="" rows="12" defaultValue={markup}></textarea>
