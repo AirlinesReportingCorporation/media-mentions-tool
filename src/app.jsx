@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { useForm } from "react-hook-form";
 import MediaMentionExample from "./components/MediaMentionExample";
 import RecentMediaExample from "./components/RecentMediaExample";
 
