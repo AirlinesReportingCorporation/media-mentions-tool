@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { CopyToClipboard } from "react-copy-to-clipboard";
 import MediaMentionExample from "./components/MediaMentionExample";
 import RecentMediaExample from "./components/RecentMediaExample";
 
@@ -64,65 +65,84 @@ export default function App() {
               <br />
               <label className="form-label">Media Mention Date</label>
               <br />
-              <select
-                required
-                onChange={(e) => setMediaMonth(e.target.value)}
-                defaultValue={mediaMonth}
-              >
-                <option value="Jan">Jan</option>
-                <option value="Feb">Feb</option>
-                <option value="Mar">Mar</option>
-                <option value="Apr">Apr</option>
-                <option value="May">May</option>
-                <option value="Jun">Jun</option>
-                <option value="Jul">Jul</option>
-                <option value="Aug">Aug</option>
-                <option value="Sep">Sep</option>
-                <option value="Oct">Oct</option>
-                <option value="Nov">Nov</option>
-                <option value="Dec">Dec</option>
-              </select>
-              <select required onChange={(e) => setMediaDay(e.target.value)} defaultValue="5">
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option  value="5">
-                  5
-                </option>
-                <option value="6">6</option>
-                <option value="7">7</option>
-                <option value="8">8</option>
-                <option value="9">9</option>
-                <option value="10">10</option>
-                <option value="11">11</option>
-                <option value="12">12</option>
-                <option value="13">13</option>
-                <option value="14">14</option>
-                <option value="15">15</option>
-                <option value="16">16</option>
-                <option value="17">17</option>
-                <option value="18">18</option>
-                <option value="19">19</option>
-                <option value="20">20</option>
-                <option value="21">21</option>
-                <option value="22">22</option>
-                <option value="23">23</option>
-                <option value="24">24</option>
-                <option value="25">25</option>
-                <option value="26">26</option>
-                <option value="27">27</option>
-                <option value="28">28</option>
-                <option value="29">29</option>
-                <option value="30">30</option>
-                <option value="31">31</option>
-              </select>
-              <select required onChange={(e) => setMediaYear(e.target.value)}>
-                <option value="2024">2024</option>
-                <option value="2025">2025</option>
-                <option value="2026">2026</option>
-              </select>
-              <br />
+              <div className="row no-gutters">
+                <div className="col">
+                  <div className="date-select">
+                    <select
+                      required
+                      onChange={(e) => setMediaMonth(e.target.value)}
+                      defaultValue={mediaMonth}
+                    >
+                      <option value="Jan">Jan</option>
+                      <option value="Feb">Feb</option>
+                      <option value="Mar">Mar</option>
+                      <option value="Apr">Apr</option>
+                      <option value="May">May</option>
+                      <option value="Jun">Jun</option>
+                      <option value="Jul">Jul</option>
+                      <option value="Aug">Aug</option>
+                      <option value="Sep">Sep</option>
+                      <option value="Oct">Oct</option>
+                      <option value="Nov">Nov</option>
+                      <option value="Dec">Dec</option>
+                    </select>
+                  </div>
+                </div>
+                <div className="col">
+                  <div className="date-select">
+                    <select
+                      required
+                      onChange={(e) => setMediaDay(e.target.value)}
+                      defaultValue="5"
+                    >
+                      <option value="1">1</option>
+                      <option value="2">2</option>
+                      <option value="3">3</option>
+                      <option value="4">4</option>
+                      <option value="5">5</option>
+                      <option value="6">6</option>
+                      <option value="7">7</option>
+                      <option value="8">8</option>
+                      <option value="9">9</option>
+                      <option value="10">10</option>
+                      <option value="11">11</option>
+                      <option value="12">12</option>
+                      <option value="13">13</option>
+                      <option value="14">14</option>
+                      <option value="15">15</option>
+                      <option value="16">16</option>
+                      <option value="17">17</option>
+                      <option value="18">18</option>
+                      <option value="19">19</option>
+                      <option value="20">20</option>
+                      <option value="21">21</option>
+                      <option value="22">22</option>
+                      <option value="23">23</option>
+                      <option value="24">24</option>
+                      <option value="25">25</option>
+                      <option value="26">26</option>
+                      <option value="27">27</option>
+                      <option value="28">28</option>
+                      <option value="29">29</option>
+                      <option value="30">30</option>
+                      <option value="31">31</option>
+                    </select>
+                  </div>
+                </div>
+                <div className="col">
+                  <div className="date-select">
+                    <select
+                      required
+                      onChange={(e) => setMediaYear(e.target.value)}
+                    >
+                      <option value="2024">2024</option>
+                      <option value="2025">2025</option>
+                      <option value="2026">2026</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+
               <label className="form-label">Media Mention URL</label>
               <br />
               <input
@@ -131,10 +151,13 @@ export default function App() {
                 placeholder={mediaUrl}
                 onChange={(e) => setMediaUrl(e.target.value)}
               />
-              <br />
             </form>
+            <br />
             <h2>Code Output</h2>
-            <textarea name="" id="" rows="12" value={markup}></textarea>
+            <textarea name="" id="" rows="10" value={markup}></textarea>
+            <CopyToClipboard text={markup}> 
+              <a onClick={() => alert("Copied code")} className="ctaBtn">Copy Code</a>
+            </CopyToClipboard>
           </div>
         </div>
 
