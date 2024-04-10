@@ -41,7 +41,7 @@ module.exports = {
       "react-spring$": "react-spring/web.cjs",
       "react-spring/renderprops$": "react-spring/renderprops.cjs",
     },
-    extensions: ["*", ".js", ".jsx"],
+    extensions: [".*", ".js", ".jsx"],
   },
   plugins: [
     new webpack.ProvidePlugin({

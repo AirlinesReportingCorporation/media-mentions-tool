@@ -1,18 +1,21 @@
 import React, { useState, useEffect } from "react";
 import { CopyToClipboard } from "react-copy-to-clipboard";
+import { useLocalStorage } from "./components/useLocalStorage";
 import MediaMentionExample from "./components/MediaMentionExample";
 import RecentMediaExample from "./components/RecentMediaExample";
 
 export default function App() {
   const [markup, setMarkup] = useState("");
-  const [mediaTitle, setMediaTitle] = useState(
+  const [mediaTitle, setMediaTitle] = useLocalStorage("tempTitle",
     "How the Crisis at Boeing Could Make Your Next Vacation More Expensive"
   );
-  const [mediaSource, setMediaSource] = useState("CNN");
-  const [mediaMonth, setMediaMonth] = useState("Apr");
-  const [mediaDay, setMediaDay] = useState("5");
-  const [mediaYear, setMediaYear] = useState("2024");
-  const [mediaUrl, setMediaUrl] = useState(
+
+  //const [media, setMedia] = useLocalStorage ("tempMedia", "");
+  const [mediaSource, setMediaSource] = useLocalStorage ("tempSource", "CNN");
+  const [mediaMonth, setMediaMonth] = useLocalStorage("tempMonth","Apr");
+  const [mediaDay, setMediaDay] = useLocalStorage("tempDay","5");
+  const [mediaYear, setMediaYear] = useLocalStorage("tempYear","2024");
+  const [mediaUrl, setMediaUrl] = useLocalStorage("tempUrl",
     "https://edition.cnn.com/2024/03/21/business/boeing-crisis-vacation-ticket-prices/index.html"
   );
 
